@@ -1,0 +1,45 @@
+#quesiton 1
+
+k = []
+r = []
+c = []
+T = int(input())
+if(1<=T and 100>=T):
+    
+    for i in range(0,T):
+        mat = []
+        trace = 0
+        row = 0
+        col = 0
+        N = int(input())
+        if(2<=N and 100>=N):
+            for j in range(N):
+                x=input().split(" ")
+                a=[]
+                for q in range(0,N):
+                        a.append(int(x[q]))
+                b = set(a)
+                if(len(b)!=N):
+                    row = row + 1
+                b.clear()
+                mat.append(a)
+
+            for m in range(0, N):  
+                for n in range(0, N):
+                    if (m == n): 
+                        trace = trace+mat[m][n]
+            
+            for m in range(0, N):
+                co = set()
+                for n in range(0, N):
+                    co.add(mat[n][m]) 
+                if(len(co)!=N):
+                    col = col + 1
+                co.clear()
+
+        k.append(trace)
+        r.append(row)
+        c.append(col)
+        
+for i in range(T):
+    print("Case #{0}: {1} {2} {3}".format(i+1,k[i],r[i],c[i]))

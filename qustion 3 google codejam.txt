@@ -1,0 +1,67 @@
+#Question 3
+
+#include <iostream>
+#include<algorithm>
+#include<vector>
+#include<string>
+using namespace std;
+
+signed main() {
+	int c;
+	cin>>c;
+	for(int i=1;i<=c;i++)
+	{
+	    int n;
+	    cin>>n;
+	    vector<pair<pair<int,int>,int>> d;
+	    for(int i = 0;i<n;i++)
+	    {
+	        int a,b;
+	        cin>>a>>b;
+	        d.push_back(make_pair(make_pair(a,b),i));
+	    }
+	    
+	    sort(d.begin(),d.end());
+	    string ans;
+	    vector<pair<int,int>> ge;
+	    bool flag = true;
+	    int bs=-1,be=0,as=-1,ae=0;
+	    for(int i =0;i<n;i++)
+	    {
+	        int p = d[i].first.first;
+	        int q = d[i].first.second;
+	        int ind = d[i].second;
+	        if(bs<p && be<=p && bs<q && be<=q)
+	        {
+	            bs = p;
+	            be = q;
+	            ge.push_back(make_pair(ind,'C'));
+	        }
+	        else if(as<p && ae<=p && as<q && ae<=q)
+	        {
+	            as = p;
+	            ae = q;
+	            ge.push_back(make_pair(ind,'J'));
+	        }
+	        else
+	        {
+	            flag = false;
+	            break;
+	        }
+	    }
+	    sort(ge.begin(),ge.end());
+	    for (int i=0;i<ge.size();i++)
+	    {
+	        ans+=ge[i].second;
+	    }
+	   if(flag)
+	   {
+	       cout<<"Case #"<<i<<": "<<ans<<"\n";
+	   }
+	   else
+	   {
+	       cout<<"Case #"<<i<<": ""IMPOSSIBLE\n";
+	   }
+	}
+	return 0;
+}
